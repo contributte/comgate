@@ -2,7 +2,7 @@
 
 namespace Tests\Cases\Unit\DI;
 
-use Contributte\Comgate\DI\ComgateExtension;
+use Contributte\Comgate\DI\ComgateExtension24;
 use Contributte\Comgate\Http\HttpClient;
 use Nette\DI\Compiler;
 use Nette\DI\Container;
@@ -13,14 +13,14 @@ use Tester\Environment;
 
 require_once __DIR__ . '/../../../bootstrap.php';
 
-if (!class_exists(Schema::class)) {
-	Environment::skip('Nette 3.0 required');
+if (class_exists(Schema::class)) {
+	Environment::skip('Nette 2.4 required');
 }
 
 test(function (): void {
 	$loader = new ContainerLoader(TEMP_DIR, true);
 	$class = $loader->load(function (Compiler $compiler): void {
-		$compiler->addExtension('comgate', new ComgateExtension())
+		$compiler->addExtension('comgate', new ComgateExtension24())
 			->addConfig([
 				'comgate' => [
 					'merchant' => '123456',
