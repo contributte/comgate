@@ -8,11 +8,11 @@
 ## Setup
 
 ```bash
-composer require contributte/comage
+composer require contributte/comgate
 ```
 
 ```yaml
-comage:
+extensions:
     # Nette 3.0 +
     comgate: Contributte\Comgate\DI\ComgateExtension
     # Nette 2.4
@@ -22,7 +22,7 @@ comage:
 ## Configuration
 
 ```yaml
-comgage:
+comgate:
     merchant: 12345678
     secret: foobar
     test: true/false
