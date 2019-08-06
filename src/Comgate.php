@@ -4,6 +4,8 @@ namespace Contributte\Comgate;
 
 class Comgate
 {
+	/** @var string */
+	const API_GATEWAY = 'https://payments.comgate.cz/v1.0/';
 
 	/** @var string */
 	private $merchant;

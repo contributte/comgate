@@ -21,7 +21,7 @@ class ComgateExtension extends CompilerExtension
 	public function getConfigSchema(): Schema
 	{
 		return Expect::structure([
-			'gateway' => Expect::string()->default('https://payments.comgate.cz/v1.0/'),
+			'gateway' => Expect::string()->default(Comgate::API_GATEWAY),
 			'merchant' => Expect::string()->required(),
 			'secret' => Expect::string()->required(),
 			'test' => Expect::bool()->default(true),
