@@ -76,7 +76,7 @@ class Payment extends AbstractEntity
 	): self
 	{
 		$p = new static();
-		$p->price = $price * 100;
+		$p->price = $price;
 		$p->curr = $curr;
 		$p->label = $label;
 		$p->refId = $refId;
