@@ -8,7 +8,7 @@ use Contributte\Comgate\Entity\Codes\PaymentMethodCode;
 class Payment extends AbstractEntity
 {
 
-	/** @var int */
+	/** @var float */
 	private $price;
 
 	/** @var string */
@@ -66,7 +66,7 @@ class Payment extends AbstractEntity
 	private $eetData;
 
 	public static function of(
-		int $price,
+		float $price,
 		string $curr,
 		string $label,
 		string $refId,
@@ -75,8 +75,12 @@ class Payment extends AbstractEntity
 		string $country = CountryCode::ALL
 	): self
 	{
+		if ($price !== round($price, 2)) {
+			throw new \InvalidArgumentException("The price must be a maximum of two valid decimal numbers.");
+		}
+
 		$p = new static();
-		$p->price = $price * 100;
+		$p->price = $price;
 		$p->curr = $curr;
 		$p->label = $label;
 		$p->refId = $refId;
@@ -88,7 +92,7 @@ class Payment extends AbstractEntity
 		return $p;
 	}
 
-	public function getPrice(): int
+	public function getPrice(): float
 	{
 		return $this->price;
 	}
