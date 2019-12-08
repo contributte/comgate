@@ -22,7 +22,7 @@ class PaymentService
 	{
 		$data = $payment->toArray();
 		// price in cents
-		$data['price'] = $payment->getPrice() * 100;
+		$data['price'] = (int) ($payment->getPrice() * 100);
 
 		return $this->client->post('create', $data);
 	}
