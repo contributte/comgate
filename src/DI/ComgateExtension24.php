@@ -8,8 +8,6 @@ use Contributte\Comgate\Http\HttpClient;
 use GuzzleHttp\Client;
 use Nette\DI\CompilerExtension;
 use Nette\DI\Statement;
-use Nette\Schema\Expect;
-use Nette\Schema\Schema;
 
 class ComgateExtension24 extends CompilerExtension
 {

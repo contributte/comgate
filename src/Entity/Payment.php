@@ -65,6 +65,10 @@ class Payment extends AbstractEntity
 	/** @var mixed[] */
 	private $eetData;
 
+	final private function __construct()
+	{
+	}
+
 	public static function of(
 		int $price,
 		string $curr,

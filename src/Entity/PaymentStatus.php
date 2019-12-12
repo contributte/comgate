@@ -8,6 +8,10 @@ class PaymentStatus extends AbstractEntity
 	/** @var string */
 	private $transId;
 
+	final private function __construct()
+	{
+	}
+
 	public static function of(string $transId): self
 	{
 		$ps = new static();
