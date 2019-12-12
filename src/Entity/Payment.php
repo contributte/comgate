@@ -4,6 +4,7 @@ namespace Contributte\Comgate\Entity;
 
 use Contributte\Comgate\Entity\Codes\CountryCode;
 use Contributte\Comgate\Entity\Codes\PaymentMethodCode;
+use Contributte\Comgate\Exceptions\Logical\InvalidArgumentException;
 
 class Payment extends AbstractEntity
 {
@@ -80,7 +81,7 @@ class Payment extends AbstractEntity
 	): self
 	{
 		if ($price !== round($price, 2)) {
-			throw new \InvalidArgumentException("The price must be a maximum of two valid decimal numbers.");
+			throw new InvalidArgumentException('The price must be a maximum of two valid decimal numbers.');
 		}
 
 		$p = new static();
