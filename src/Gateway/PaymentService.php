@@ -20,7 +20,11 @@ class PaymentService
 
 	public function create(Payment $payment): Response
 	{
-		return $this->client->post('create', $payment->toArray());
+		$data = $payment->toArray();
+		// price in cents
+		$data['price'] = (int) ($payment->getPrice() * 100);
+
+		return $this->client->post('create', $data);
 	}
 
 	public function status(PaymentStatus $status): Response
