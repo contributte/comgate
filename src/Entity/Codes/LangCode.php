@@ -8,9 +8,9 @@ namespace Contributte\Comgate\Entity\Codes;
 final class LangCode
 {
 
-	public const CS = 'cs';
-	public const SK = 'sk';
-	public const EN = 'en';
-	public const PL = 'pl';
-	
+    public const CS = 'cs';
+    public const SK = 'sk';
+    public const EN = 'en';
+    public const PL = 'pl';
+    
 }
