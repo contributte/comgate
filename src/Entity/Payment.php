@@ -3,6 +3,7 @@
 namespace Contributte\Comgate\Entity;
 
 use Contributte\Comgate\Entity\Codes\CountryCode;
+use Contributte\Comgate\Entity\Codes\LangCode;
 use Contributte\Comgate\Entity\Codes\PaymentMethodCode;
 use Contributte\Comgate\Exceptions\Logical\InvalidArgumentException;
 
@@ -12,7 +13,7 @@ class Payment extends AbstractEntity
 	/** @var float */
 	private $price;
 
-	/** @var string */
+	/** @var string ISO 4217 */
 	private $curr;
 
 	/** @var string */
@@ -42,8 +43,8 @@ class Payment extends AbstractEntity
 	/** @var string */
 	private $name;
 
-	/** @var string */
-	private $lang;
+	/** @var string ISO 639-1 */
+	private $lang = LangCode::CS;
 
 	/** @var bool */
 	private $prepareOnly;
@@ -77,7 +78,8 @@ class Payment extends AbstractEntity
 		string $refId,
 		string $email,
 		string $method = PaymentMethodCode::ALL,
-		string $country = CountryCode::ALL
+		string $country = CountryCode::ALL,
+		string $lang = LangCode::CS
 	): self
 	{
 		if ($price !== round($price, 2)) {
@@ -92,6 +94,7 @@ class Payment extends AbstractEntity
 		$p->email = $email;
 		$p->method = $method;
 		$p->country = $country;
+		$p->lang = $lang;
 		$p->prepareOnly = true;
 
 		return $p;
@@ -271,6 +274,8 @@ class Payment extends AbstractEntity
 			'method' => $this->method,
 			'email' => $this->email,
 			'prepareOnly' => $this->prepareOnly ? 'true' : 'false',
+			'country' => $this->country,
+			'lang' => $this->lang,
 		];
 	}
 
