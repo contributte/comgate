@@ -1,1 +1,6 @@
 parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to deprecated method validateConfig\\(\\) of class Nette\\\\DI\\\\CompilerExtension\\:\nuse getConfigSchema\\(\\)$#"
+			count: 1
+			path: src/DI/ComgateExtension24.php
