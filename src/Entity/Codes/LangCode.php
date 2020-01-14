@@ -8,6 +8,6 @@ final class LangCode
 	public const CS = 'cs';
 	public const SK = 'sk';
 	public const EN = 'en';
-	public const PL = 'PL';
+	public const PL = 'pl';
 
 }
