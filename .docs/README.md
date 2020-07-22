@@ -54,7 +54,7 @@ final class Payments
         PaymentMethodCode::ALL
     );
 
-    $res = $payments->create($payment);
+    $res = $this->paymentService->create($payment);
     
     // $res->isOk();
     return $res->getData();
@@ -78,7 +78,7 @@ final class Payments
 
   public function getStatus(string $transaction): array 
   {
-    $res = $payments->status(PaymentStatus::from($transaction);
+    $res = $this->paymentService->status(PaymentStatus::from($transaction));
     
     // $res->isOk();
     return $res->getData();
