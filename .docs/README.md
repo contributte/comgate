@@ -23,7 +23,7 @@ extensions:
 
 ```yaml
 comgate:
-    merchant: 12345678
+    merchant: e-shop_name # nazev obchodu v systemu ComGate - naleznete v Klientském portalu v sekci Integrace - Nastaveni obchodu - Propojeni obchodu
     secret: foobar
     test: true/false
 ```
