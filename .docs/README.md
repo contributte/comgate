@@ -23,7 +23,7 @@ extensions:
 
 ```yaml
 comgate:
-    merchant: 12345678
+    merchant: "12345678"
     secret: foobar
     test: true/false
 ```
