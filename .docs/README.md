@@ -78,7 +78,7 @@ final class Payments
 
   public function getStatus(string $transaction): array 
   {
-    $res = $this->paymentService->status(PaymentStatus::from($transaction));
+    $res = $this->paymentService->status(PaymentStatus::of($transaction));
     
     // $res->isOk();
     return $res->getData();
