@@ -1,5 +1,6 @@
 <?php declare(strict_types = 1);
 
+use Brick\Money\Money;
 use Contributte\Comgate\DI\ComgateExtension;
 use Contributte\Comgate\Entity\Codes\PaymentMethodCode;
 use Contributte\Comgate\Entity\Payment;
@@ -39,8 +40,7 @@ function createPayment(): void
 	$payments = $container->getByType(PaymentService::class);
 
 	$payment = Payment::of(
-		50,
-		'CZK',
+		Money::of(50, 'CZK'),
 		'Test item',
 		'test001',
 		'dev@contributte.org',
