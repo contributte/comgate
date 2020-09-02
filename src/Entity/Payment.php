@@ -74,7 +74,6 @@ class Payment extends AbstractEntity
 
 	public static function of(
 		Money $money,
-		string $curr,
 		string $label,
 		string $refId,
 		string $email,
@@ -85,7 +84,7 @@ class Payment extends AbstractEntity
 	{
 		$p = new static();
 		$p->price = $money->multipliedBy(100, RoundingMode::UNNECESSARY)->getAmount()->toInt();
-		$p->curr = $curr;
+		$p->curr = $money->getCurrency()->getCurrencyCode();
 		$p->label = $label;
 		$p->refId = $refId;
 		$p->email = $email;
