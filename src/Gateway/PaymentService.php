@@ -21,8 +21,6 @@ class PaymentService
 	public function create(Payment $payment): Response
 	{
 		$data = $payment->toArray();
-		// price in cents
-		$data['price'] = (int) ($payment->getPrice() * 100);
 
 		return $this->client->post('create', $data);
 	}

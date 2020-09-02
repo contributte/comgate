@@ -2,15 +2,16 @@
 
 namespace Contributte\Comgate\Entity;
 
+use Brick\Math\RoundingMode;
+use Brick\Money\Money;
 use Contributte\Comgate\Entity\Codes\CountryCode;
 use Contributte\Comgate\Entity\Codes\LangCode;
 use Contributte\Comgate\Entity\Codes\PaymentMethodCode;
-use Contributte\Comgate\Exceptions\Logical\InvalidArgumentException;
 
 class Payment extends AbstractEntity
 {
 
-	/** @var float */
+	/** @var int */
 	private $price;
 
 	/** @var string ISO 4217 */
@@ -72,7 +73,7 @@ class Payment extends AbstractEntity
 	}
 
 	public static function of(
-		float $price,
+		Money $money,
 		string $curr,
 		string $label,
 		string $refId,
@@ -82,12 +83,8 @@ class Payment extends AbstractEntity
 		string $lang = LangCode::CS
 	): self
 	{
-		if ($price !== round($price, 2)) {
-			throw new InvalidArgumentException('The price must be a maximum of two valid decimal numbers.');
-		}
-
 		$p = new static();
-		$p->price = $price;
+		$p->price = $money->multipliedBy(100, RoundingMode::UNNECESSARY)->getAmount()->toInt();
 		$p->curr = $curr;
 		$p->label = $label;
 		$p->refId = $refId;
@@ -100,7 +97,7 @@ class Payment extends AbstractEntity
 		return $p;
 	}
 
-	public function getPrice(): float
+	public function getPrice(): int
 	{
 		return $this->price;
 	}
