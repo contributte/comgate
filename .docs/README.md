@@ -33,6 +33,7 @@ comgate:
 ### Create payment
 
 ```php
+use Brick\Money\Money;
 use Contributte\Comgate\Entity\Codes\PaymentMethodCode;
 use Contributte\Comgate\Entity\Payment;
 use Contributte\Comgate\Gateway\PaymentService;
@@ -43,11 +44,10 @@ final class Payments
   /** @var PaymentService */
   private $paymentService;
 
-  public function createPayment(array $data): array 
+  public function createPayment(array $data): array
   {
     $payment = Payment::of(
-        $data['price'] ?? 50,
-        $data['currency'] ?? 'CZK',
+        Money::of($data['price'] ?? 50, $data['currency'] ?? 'CZK'),
         $data['label'] ?? 'Test item',
         $data['refId'] ?? 'order101',
         $data['email'] ?? 'dev@contributte.org',
@@ -55,7 +55,7 @@ final class Payments
     );
 
     $res = $this->paymentService->create($payment);
-    
+
     // $res->isOk();
     return $res->getData();
   }
@@ -76,10 +76,10 @@ final class Payments
   /** @var PaymentService */
   private $paymentService;
 
-  public function getStatus(string $transaction): array 
+  public function getStatus(string $transaction): array
   {
     $res = $this->paymentService->status(PaymentStatus::of($transaction));
-    
+
     // $res->isOk();
     return $res->getData();
   }
