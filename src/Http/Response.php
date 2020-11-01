@@ -2,8 +2,8 @@
 
 namespace Contributte\Comgate\Http;
 
+use GuzzleHttp\Psr7\Query;
 use Psr\Http\Message\ResponseInterface;
-use function GuzzleHttp\Psr7\parse_query;
 
 class Response
 {
@@ -53,7 +53,7 @@ class Response
 
 			$content = $body->getContents();
 
-			$this->parsed = parse_query($content);
+			$this->parsed = Query::parse($content);
 		}
 
 		return $this->parsed;
