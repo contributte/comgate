@@ -13,6 +13,10 @@
 			<property name="extensions" type="array" value="php,phpt"/>
 		</properties>
 	</rule>
+	<rule ref="Squiz.Arrays.ArrayDeclaration.ValueNoNewline">
+		<exclude-pattern>src/DI/ComgateExtension\.php</exclude-pattern>
+		<exclude-pattern>src/DI/ComgateExtension24\.php</exclude-pattern>
+	</rule>
 
 	<!--Exclude folders -->
 	<exclude-pattern>/tests/tmp</exclude-pattern>
