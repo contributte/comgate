@@ -41,9 +41,11 @@ class ComgateExtension extends CompilerExtension
 
 		$builder->addDefinition($this->prefix('http.client'))
 			->setFactory(HttpClient::class, [
-				new Statement(Client::class, [[
-					'base_uri' => $this->config->gateway,
-				]]),
+				new Statement(Client::class, [
+					[
+						'base_uri' => $this->config->gateway,
+					],
+				]),
 				$this->prefix('@comgate'),
 			]);
 
