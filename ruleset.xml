@@ -6,16 +6,11 @@
 	<!-- Specific rules -->
 	<rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
 		<properties>
-			<property name="rootNamespaces" type="array" value="
-				src=>Contributte\Comgate,
-				tests/cases=>Tests\Cases\Contributte\Comgate
-			"/>
-			<property name="extensions" type="array" value="php,phpt"/>
+			<property name="rootNamespaces" type="array">
+				<element key="src" value="Contributte\Comgate"/>
+				<element key="tests/cases" value="Tests\Cases"/>
+			</property>
 		</properties>
-	</rule>
-	<rule ref="Squiz.Arrays.ArrayDeclaration.ValueNoNewline">
-		<exclude-pattern>src/DI/ComgateExtension\.php</exclude-pattern>
-		<exclude-pattern>src/DI/ComgateExtension24\.php</exclude-pattern>
 	</rule>
 
 	<!--Exclude folders -->
