@@ -20,10 +20,10 @@
 
 ## Usage
 
-To install latest version of `contributte/comgate` use [Composer](https://getcomposer.com).
+To install latest version of `contributte/comgate` use [Composer](https://getcomposer.org).
 
 ```
-composer require contributte/comgate
+$ composer require contributte/comgate
 ```
 
 ## Documentation
