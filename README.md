@@ -22,7 +22,7 @@
 
 To install latest version of `contributte/comgate` use [Composer](https://getcomposer.com).
 
-```
+```bash
 composer require contributte/comgate
 ```
 
