@@ -1,7 +1,13 @@
 {
   "name": "contributte/comgate",
   "description": "Comgate Payment Gateway for Nette Framework",
-  "keywords": ["comgate", "payment", "php", "api", "nette"],
+  "keywords": [
+    "comgate",
+    "payment",
+    "php",
+    "api",
+    "nette"
+  ],
   "type": "library",
   "license": "MIT",
   "homepage": "https://github.com/contributte/comgate",
