@@ -272,6 +272,7 @@ class Payment extends AbstractEntity
 			'prepareOnly' => $this->prepareOnly ? 'true' : 'false',
 			'country' => $this->country,
 			'lang' => $this->lang,
+			'embedded' => $this->embedded ? 'true' : 'false',
 		];
 	}
 
