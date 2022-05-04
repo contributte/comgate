@@ -4,9 +4,6 @@ namespace Contributte\Comgate\Entity;
 
 use Brick\Math\RoundingMode;
 use Brick\Money\Money;
-use Contributte\Comgate\Entity\Codes\CountryCode;
-use Contributte\Comgate\Entity\Codes\LangCode;
-use Contributte\Comgate\Entity\Codes\PaymentMethodCode;
 
 class Refund extends AbstractEntity
 {
