@@ -32,17 +32,18 @@ class PaymentService
 		return $this->client->post('status', $status->toArray());
 	}
 
-    public function refund(Refund $payment): Response
-    {
-        $data = $payment->toArray();
+	public function refund(Refund $payment): Response
+	{
+		$data = $payment->toArray();
 
-        return $this->client->post('refund', $data);
-    }
+		return $this->client->post('refund', $data);
+	}
 
-    public function storno(Storno $payment): Response
-    {
-        $data = $payment->toArray();
+	public function storno(Storno $payment): Response
+	{
+		$data = $payment->toArray();
 
-        return $this->client->post('cancel', $data);
-    }
+		return $this->client->post('cancel', $data);
+	}
+
 }

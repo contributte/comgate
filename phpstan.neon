@@ -5,6 +5,18 @@ includes:
 	- vendor/phpstan/phpstan-strict-rules/rules.neon
 
 parameters:
+	level: 9
+	phpVersion: 80000
+
+	scanDirectories:
+		- src
+
+	fileExtensions:
+		- php
+
+	paths:
+		- src
+
 	ignoreErrors:
 		-
 			message: "#^Call to deprecated method validateConfig\\(\\) of class Nette\\\\DI\\\\CompilerExtension\\:\nuse getConfigSchema\\(\\)$#"

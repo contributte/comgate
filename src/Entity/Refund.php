@@ -17,8 +17,8 @@ class Refund extends AbstractEntity
 	/** @var string */
 	private $transId;
 
-    /** @var null|string */
-    private $refId;
+	/** @var string|null */
+	private $refId;
 
 	final private function __construct()
 	{
@@ -27,14 +27,14 @@ class Refund extends AbstractEntity
 	public static function of(
 		Money $money,
 		string $transId,
-        string $refId = null
+		?string $refId = null
 	): self
 	{
 		$p = new static();
 		$p->amount = $money->multipliedBy(100, RoundingMode::UNNECESSARY)->getAmount()->toInt();
 		$p->curr = $money->getCurrency()->getCurrencyCode();
 		$p->transId = $transId;
-        $p->refId = $refId;
+		$p->refId = $refId;
 
 		return $p;
 	}
@@ -54,11 +54,10 @@ class Refund extends AbstractEntity
 		return $this->transId;
 	}
 
-    public function getRefId(): string
-    {
-        return $this->refId;
-    }
-
+	public function getRefId(): ?string
+	{
+		return $this->refId;
+	}
 
 	/**
 	 * @return mixed[]
@@ -69,7 +68,7 @@ class Refund extends AbstractEntity
 			'amount' => $this->amount,
 			'curr' => $this->curr,
 			'transId' => $this->transId,
-            'refId' => $this->refId,
+			'refId' => $this->refId,
 		];
 	}
 
