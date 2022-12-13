@@ -7,7 +7,7 @@ use Contributte\Comgate\Gateway\PaymentService;
 use Contributte\Comgate\Http\HttpClient;
 use GuzzleHttp\Client;
 use Nette\DI\CompilerExtension;
-use Nette\DI\Definitions\Statement;
+use Nette\DI\Statement;
 
 class ComgateExtension24 extends CompilerExtension
 {

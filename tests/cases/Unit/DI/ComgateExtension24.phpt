@@ -17,9 +17,13 @@ if (class_exists(Schema::class)) {
 	Environment::skip('Nette 2.4 required');
 }
 
+if (version_compare(PHP_VERSION, '8.1') >= 0) {
+	Environment::skip('PHP <8.1 required');
+}
+
 test(function (): void {
 	$loader = new ContainerLoader(TEMP_DIR, true);
-	$class = $loader->load(function (Compiler $compiler): void {
+	$class = @$loader->load(function (Compiler $compiler): void {
 		$compiler->addExtension('comgate', new ComgateExtension24())
 			->addConfig([
 				'comgate' => [
