@@ -8,6 +8,8 @@ final class PaymentMethodCode
 	public const ALL = 'ALL';
 	public const ALL_CARDS = 'CARD_ALL';
 	public const ALL_BANKS = 'BANK_ALL';
+	public const ALL_LATER = 'LATER_ALL';
+	public const ALL_PART = 'PART_ALL';
 
 	// CZ
 
@@ -39,4 +41,13 @@ final class PaymentMethodCode
 	public const BANK_CSOB_SK_BUTTON = 'BANK_SK_CSOB';
 	public const BANK_POSTOVNA_SK_BUTTON = 'BANK_SK_PB';
 
+	// LATER
+
+	public const LATER_TWISTO = 'LATER_TWISTO';
+	public const LATER_SKIPPAY = 'LATER_SKIPPAY';
+
+	// PART
+
+	public const PART_TWISTO = 'PART_TWISTO';
+	public const PART_SKIPPAY = 'PART_SKIPPAY';
 }
