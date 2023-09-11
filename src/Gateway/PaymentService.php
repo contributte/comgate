@@ -4,6 +4,7 @@ namespace Contributte\Comgate\Gateway;
 
 use Contributte\Comgate\Entity\Payment;
 use Contributte\Comgate\Entity\PaymentStatus;
+use Contributte\Comgate\Entity\RecurringPayment;
 use Contributte\Comgate\Entity\Refund;
 use Contributte\Comgate\Entity\Storno;
 use Contributte\Comgate\Http\HttpClient;
@@ -25,6 +26,13 @@ class PaymentService
 		$data = $payment->toArray();
 
 		return $this->client->post('create', $data);
+	}
+
+	public function recurring(RecurringPayment $payment): Response
+	{
+		$data = $payment->toArray();
+
+		return $this->client->post('recurring', $data);
 	}
 
 	public function status(PaymentStatus $status): Response

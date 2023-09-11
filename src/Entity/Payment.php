@@ -8,65 +8,29 @@ use Contributte\Comgate\Entity\Codes\CountryCode;
 use Contributte\Comgate\Entity\Codes\LangCode;
 use Contributte\Comgate\Entity\Codes\PaymentMethodCode;
 
-class Payment extends AbstractEntity
+class Payment extends AbstractPayment
 {
-
-	/** @var int */
-	private $price;
-
-	/** @var string ISO 4217 */
-	private $curr;
-
-	/** @var string */
-	private $label;
-
-	/** @var string */
-	private $refId;
-
-	/** @var string */
-	private $email;
 
 	/** @var string */
 	private $method = PaymentMethodCode::ALL;
-
-	/** @var string */
-	private $country = CountryCode::ALL;
-
-	/** @var string */
-	private $payerId;
-
-	/** @var string */
-	private $account;
-
-	/** @var string */
-	private $phone;
-
-	/** @var string */
-	private $name;
 
 	/** @var string ISO 639-1 */
 	private $lang = LangCode::CS;
 
 	/** @var bool */
-	private $prepareOnly;
+	private $prepareOnly = true;
 
 	/** @var bool */
-	private $preauth;
+	private $preauth = false;
 
 	/** @var bool */
-	private $initRecurring;
+	private $initRecurring = false;
 
 	/** @var bool */
-	private $verification;
+	private $verification = false;
 
 	/** @var bool */
-	private $embedded;
-
-	/** @var bool */
-	private $eetReport;
-
-	/** @var mixed[] */
-	private $eetData;
+	private $embedded = false;
 
 	final private function __construct()
 	{
@@ -91,84 +55,13 @@ class Payment extends AbstractEntity
 		$p->method = $method;
 		$p->country = $country;
 		$p->lang = $lang;
-		$p->prepareOnly = true;
 
 		return $p;
-	}
-
-	public function getPrice(): int
-	{
-		return $this->price;
-	}
-
-	public function getCurr(): string
-	{
-		return $this->curr;
-	}
-
-	public function getLabel(): string
-	{
-		return $this->label;
-	}
-
-	public function getRefId(): string
-	{
-		return $this->refId;
-	}
-
-	public function getEmail(): string
-	{
-		return $this->email;
 	}
 
 	public function getMethod(): string
 	{
 		return $this->method;
-	}
-
-	public function getCountry(): string
-	{
-		return $this->country;
-	}
-
-	public function getPayerId(): string
-	{
-		return $this->payerId;
-	}
-
-	public function setPayerId(string $payerId): void
-	{
-		$this->payerId = $payerId;
-	}
-
-	public function getAccount(): string
-	{
-		return $this->account;
-	}
-
-	public function setAccount(string $account): void
-	{
-		$this->account = $account;
-	}
-
-	public function getPhone(): string
-	{
-		return $this->phone;
-	}
-
-	public function setPhone(string $phone): void
-	{
-		$this->phone = $phone;
-	}
-
-	public function getName(): string
-	{
-		return $this->name;
-	}
-
-	public function setName(string $name): void
-	{
-		$this->name = $name;
 	}
 
 	public function getLang(): string
@@ -231,49 +124,20 @@ class Payment extends AbstractEntity
 		$this->embedded = $embedded;
 	}
 
-	public function isEetReport(): bool
-	{
-		return $this->eetReport;
-	}
-
-	public function setEetReport(bool $eetReport): void
-	{
-		$this->eetReport = $eetReport;
-	}
-
-	/**
-	 * @return mixed[]
-	 */
-	public function getEetData(): array
-	{
-		return $this->eetData;
-	}
-
-	/**
-	 * @param mixed[] $eetData
-	 */
-	public function setEetData(array $eetData): void
-	{
-		$this->eetData = $eetData;
-	}
-
 	/**
 	 * @return mixed[]
 	 */
 	public function toArray(): array
 	{
-		return [
-			'price' => $this->price,
-			'curr' => $this->curr,
-			'label' => $this->label,
-			'refId' => $this->refId,
+		return array_merge(parent::toArray(), [
 			'method' => $this->method,
-			'email' => $this->email,
-			'prepareOnly' => $this->prepareOnly ? 'true' : 'false',
-			'country' => $this->country,
 			'lang' => $this->lang,
+			'prepareOnly' => $this->prepareOnly ? 'true' : 'false',
+			'preauth' => $this->preauth ? 'true' : 'false',
+			'initRecurring' => $this->initRecurring ? 'true' : 'false',
+			'verification' => $this->verification ? 'true' : 'false',
 			'embedded' => $this->embedded ? 'true' : 'false',
-		];
+		]);
 	}
 
 }
