@@ -50,4 +50,5 @@ final class PaymentMethodCode
 
 	public const PART_TWISTO = 'PART_TWISTO';
 	public const PART_SKIPPAY = 'PART_SKIPPAY';
+
 }
