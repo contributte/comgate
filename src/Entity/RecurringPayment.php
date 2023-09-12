@@ -37,9 +37,9 @@ class RecurringPayment extends AbstractPayment
 		return $p;
 	}
 
-	public function getInitRecurringId(): int
+	public function getInitRecurringId(): string
 	{
-		return $this->price;
+		return $this->initRecurringId;
 	}
 
 	/**
