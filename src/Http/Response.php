@@ -29,11 +29,6 @@ class Response
 		return $this->origin->getStatusCode();
 	}
 
-	public function isOk(): bool
-	{
-		return ($this->getParsedBody()['code'] ?? -1) === '0';
-	}
-
 	/**
 	 * @return mixed[]
 	 */

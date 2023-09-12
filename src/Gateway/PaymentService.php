@@ -6,9 +6,13 @@ use Contributte\Comgate\Entity\Payment;
 use Contributte\Comgate\Entity\PaymentStatus;
 use Contributte\Comgate\Entity\RecurringPayment;
 use Contributte\Comgate\Entity\Refund;
+use Contributte\Comgate\Entity\Response\PaymentResponse;
+use Contributte\Comgate\Entity\Response\PaymentStatusResponse;
+use Contributte\Comgate\Entity\Response\RecurringPaymentResponse;
+use Contributte\Comgate\Entity\Response\RefundResponse;
+use Contributte\Comgate\Entity\Response\StornoResponse;
 use Contributte\Comgate\Entity\Storno;
 use Contributte\Comgate\Http\HttpClient;
-use Contributte\Comgate\Http\Response;
 
 class PaymentService
 {
@@ -21,37 +25,37 @@ class PaymentService
 		$this->client = $client;
 	}
 
-	public function create(Payment $payment): Response
+	public function create(Payment $payment): PaymentResponse
 	{
 		$data = $payment->toArray();
 
-		return $this->client->post('create', $data);
+		return new PaymentResponse($this->client->post('create', $data));
 	}
 
-	public function recurring(RecurringPayment $payment): Response
+	public function recurring(RecurringPayment $payment): RecurringPaymentResponse
 	{
 		$data = $payment->toArray();
 
-		return $this->client->post('recurring', $data);
+		return new RecurringPaymentResponse($this->client->post('recurring', $data));
 	}
 
-	public function status(PaymentStatus $status): Response
+	public function status(PaymentStatus $status): PaymentStatusResponse
 	{
-		return $this->client->post('status', $status->toArray());
+		return new PaymentStatusResponse($this->client->post('status', $status->toArray()));
 	}
 
-	public function refund(Refund $payment): Response
-	{
-		$data = $payment->toArray();
-
-		return $this->client->post('refund', $data);
-	}
-
-	public function storno(Storno $payment): Response
+	public function refund(Refund $payment): RefundResponse
 	{
 		$data = $payment->toArray();
 
-		return $this->client->post('cancel', $data);
+		return new RefundResponse($this->client->post('refund', $data));
+	}
+
+	public function storno(Storno $payment): StornoResponse
+	{
+		$data = $payment->toArray();
+
+		return new StornoResponse($this->client->post('cancel', $data));
 	}
 
 }
