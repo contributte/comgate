@@ -7,7 +7,7 @@
 	<rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
 		<properties>
 			<property name="rootNamespaces" type="array">
-				<element key="src" value="Contributte\Middlewares"/>
+				<element key="src" value="Contributte\Comgate"/>
 				<element key="tests" value="Tests"/>
 			</property>
 			<property name="extensions" type="array">
