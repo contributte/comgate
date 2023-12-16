@@ -16,6 +16,7 @@ use Contributte\Comgate\Entity\Response\StornoResponse;
 use Contributte\Comgate\Entity\Storno;
 use Contributte\Comgate\Gateway\PaymentService;
 use Contributte\Comgate\Http\HttpClient;
+use Contributte\Tester\Toolkit;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -23,9 +24,9 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use Tester\Assert;
 
-require_once __DIR__ . '/../../../bootstrap.php';
+require_once __DIR__ . '/../../bootstrap.php';
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$transactions = [];
 	$mockHandler = new MockHandler();
 	$handlerStack = HandlerStack::create(HandlerStack::create($mockHandler));
@@ -48,7 +49,7 @@ test(function (): void {
 	Assert::equal('create', (string) $transactions[0]['request']->getUri()->getPath());
 });
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$transactions = [];
 	$mockHandler = new MockHandler();
 	$handlerStack = HandlerStack::create(HandlerStack::create($mockHandler));
@@ -72,7 +73,7 @@ test(function (): void {
 	Assert::equal('recurring', (string) $transactions[0]['request']->getUri()->getPath());
 });
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$transactions = [];
 	$mockHandler = new MockHandler();
 	$handlerStack = HandlerStack::create(HandlerStack::create($mockHandler));
@@ -90,7 +91,7 @@ test(function (): void {
 	Assert::equal('status', (string) $transactions[0]['request']->getUri()->getPath());
 });
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$transactions = [];
 	$mockHandler = new MockHandler();
 	$handlerStack = HandlerStack::create(HandlerStack::create($mockHandler));
@@ -111,7 +112,7 @@ test(function (): void {
 	Assert::equal('refund', (string) $transactions[0]['request']->getUri()->getPath());
 });
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$transactions = [];
 	$mockHandler = new MockHandler();
 	$handlerStack = HandlerStack::create(HandlerStack::create($mockHandler));
@@ -129,7 +130,7 @@ test(function (): void {
 	Assert::equal('cancel', (string) $transactions[0]['request']->getUri()->getPath());
 });
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$transactions = [];
 	$mockHandler = new MockHandler();
 	$handlerStack = HandlerStack::create(HandlerStack::create($mockHandler));

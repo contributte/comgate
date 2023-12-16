@@ -6,11 +6,12 @@ use Brick\Money\Money;
 use Contributte\Comgate\Entity\Codes\CountryCode;
 use Contributte\Comgate\Entity\Payment;
 use Contributte\Comgate\Entity\RecurringPayment;
+use Contributte\Tester\Toolkit;
 use Tester\Assert;
 
-require_once __DIR__ . '/../../../bootstrap.php';
+require_once __DIR__ . '/../../bootstrap.php';
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$payment = RecurringPayment::of(
 		'123-ABC-123',
 		Money::of(50, 'CZK'),
@@ -33,7 +34,7 @@ test(function (): void {
 	], $payment->toArray());
 });
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$payment = Payment::of(
 		Money::of(50, 'CZK'),
 		'Test item',
@@ -44,7 +45,7 @@ test(function (): void {
 	Assert::equal('item101', $payment->toArray()['name']);
 });
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$payment = RecurringPayment::of(
 		'123-ABC-123',
 		Money::of(50, 'CZK'),

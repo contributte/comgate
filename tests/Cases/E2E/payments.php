@@ -6,30 +6,25 @@ use Contributte\Comgate\Entity\Codes\PaymentMethodCode;
 use Contributte\Comgate\Entity\Payment;
 use Contributte\Comgate\Entity\PaymentStatus;
 use Contributte\Comgate\Gateway\PaymentService;
+use Contributte\Tester\Utils\ContainerBuilder;
 use Nette\DI\Compiler;
 use Nette\DI\Container;
-use Nette\DI\ContainerLoader;
 
 require __DIR__ . '/../../../vendor/autoload.php';
 
 function createContainer(): Container
 {
-	$loader = new ContainerLoader(__DIR__ . '/../../tmp/cache', false);
-	$class = $loader->load(function (Compiler $compiler): void {
-		$compiler->addExtension('comgate', new ComgateExtension())
-			->addConfig([
-				'comgate' => [
-					'merchant' => '***',
-					'secret' => '***',
-					'test' => true,
-				],
-			]);
-	}, __FILE__);
-
-	/** @var Container $container */
-	$container = new $class();
-
-	return $container;
+	return ContainerBuilder::of()
+		->withCompiler(function (Compiler $compiler): void {
+			$compiler->addExtension('comgate', new ComgateExtension())
+				->addConfig([
+					'comgate' => [
+						'merchant' => '***',
+						'secret' => '***',
+						'test' => true,
+					],
+				]);
+		})->build();
 }
 
 function createPayment(): void

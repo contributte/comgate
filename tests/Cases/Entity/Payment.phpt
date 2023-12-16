@@ -7,11 +7,12 @@ use Contributte\Comgate\Entity\Codes\CountryCode;
 use Contributte\Comgate\Entity\Codes\LangCode;
 use Contributte\Comgate\Entity\Codes\PaymentMethodCode;
 use Contributte\Comgate\Entity\Payment;
+use Contributte\Tester\Toolkit;
 use Tester\Assert;
 
-require_once __DIR__ . '/../../../bootstrap.php';
+require_once __DIR__ . '/../../bootstrap.php';
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$payment = Payment::of(
 		Money::of(50, 'CZK'),
 		'Test item',
@@ -40,7 +41,7 @@ test(function (): void {
 	], $payment->toArray());
 });
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$payment = Payment::of(
 		Money::of(50, 'CZK'),
 		'Test item',
@@ -51,7 +52,7 @@ test(function (): void {
 	Assert::equal('true', $payment->toArray()['embedded']);
 });
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$payment = Payment::of(
 		Money::of(50, 'CZK'),
 		'Test item',
@@ -62,7 +63,7 @@ test(function (): void {
 	Assert::equal('true', $payment->toArray()['initRecurring']);
 });
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$payment = Payment::of(
 		Money::of(50, 'CZK'),
 		'Test item',
@@ -73,7 +74,7 @@ test(function (): void {
 	Assert::equal('true', $payment->toArray()['preauth']);
 });
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$payment = Payment::of(
 		Money::of(50, 'CZK'),
 		'Test item',
@@ -84,7 +85,7 @@ test(function (): void {
 	Assert::equal('false', $payment->toArray()['prepareOnly']);
 });
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$payment = Payment::of(
 		Money::of(50, 'CZK'),
 		'Test item',
@@ -95,7 +96,7 @@ test(function (): void {
 	Assert::equal('true', $payment->toArray()['verification']);
 });
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$payment = Payment::of(
 		Money::of(50, 'CZK'),
 		'Test item',
@@ -106,7 +107,7 @@ test(function (): void {
 	Assert::equal('item101', $payment->toArray()['name']);
 });
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$payment = Payment::of(
 		Money::of(50, 'CZK'),
 		'Test item',
@@ -117,7 +118,7 @@ test(function (): void {
 	Assert::equal('acc1', $payment->toArray()['account']);
 });
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$payment = Payment::of(
 		Money::of(50, 'CZK'),
 		'Test item',
