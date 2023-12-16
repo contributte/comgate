@@ -13,10 +13,7 @@ composer require contributte/comgate
 
 ```neon
 extensions:
-	# Nette 3.0 +
 	comgate: Contributte\Comgate\DI\ComgateExtension
-	# Nette 2.4
-	comgate: Contributte\Comgate\DI\ComgateExtension24
 ```
 
 ## Configuration
