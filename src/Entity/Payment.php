@@ -11,29 +11,24 @@ use Contributte\Comgate\Entity\Codes\PaymentMethodCode;
 class Payment extends AbstractPayment
 {
 
-	/** @var string */
-	private $method = PaymentMethodCode::ALL;
+	private string $method = PaymentMethodCode::ALL;
 
 	/** @var string ISO 639-1 */
-	private $lang = LangCode::CS;
+	private string $lang = LangCode::CS;
 
-	/** @var bool */
-	private $prepareOnly = true;
+	private bool $prepareOnly = true;
 
-	/** @var bool */
-	private $preauth = false;
+	private bool $preauth = false;
 
-	/** @var bool */
-	private $initRecurring = false;
+	private bool $initRecurring = false;
 
-	/** @var bool */
-	private $verification = false;
+	private bool $verification = false;
 
-	/** @var bool */
-	private $embedded = false;
+	private bool $embedded = false;
 
 	final private function __construct()
 	{
+		// Noop
 	}
 
 	public static function of(

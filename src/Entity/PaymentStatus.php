@@ -5,11 +5,11 @@ namespace Contributte\Comgate\Entity;
 class PaymentStatus extends AbstractEntity
 {
 
-	/** @var string */
-	private $transId;
+	private string $transId;
 
 	final private function __construct()
 	{
+		// Noop
 	}
 
 	public static function of(string $transId): self

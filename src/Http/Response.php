@@ -8,11 +8,10 @@ use Psr\Http\Message\ResponseInterface;
 class Response
 {
 
-	/** @var ResponseInterface */
-	protected $origin;
+	protected ResponseInterface $origin;
 
 	/** @var mixed[] */
-	protected $parsed;
+	protected array $parsed = [];
 
 	public function __construct(ResponseInterface $origin)
 	{
@@ -42,7 +41,7 @@ class Response
 	 */
 	protected function getParsedBody(): array
 	{
-		if ($this->parsed === null) {
+		if ($this->parsed === []) {
 			$body = $this->origin->getBody();
 			$body->rewind();
 

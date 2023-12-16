@@ -5,11 +5,11 @@ namespace Contributte\Comgate\Entity;
 class Storno extends AbstractEntity
 {
 
-	/** @var string */
-	private $transId;
+	private string $transId;
 
 	final private function __construct()
 	{
+		// Noop
 	}
 
 	public static function of(
@@ -26,7 +26,6 @@ class Storno extends AbstractEntity
 	{
 		return $this->transId;
 	}
-
 
 	/**
 	 * @return mixed[]

@@ -8,11 +8,9 @@ use GuzzleHttp\ClientInterface;
 class HttpClient
 {
 
-	/** @var ClientInterface */
-	protected $client;
+	protected ClientInterface $client;
 
-	/** @var Comgate */
-	protected $comgate;
+	protected Comgate $comgate;
 
 	public function __construct(ClientInterface $client, Comgate $comgate)
 	{

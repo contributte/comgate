@@ -7,29 +7,22 @@ use Contributte\Comgate\Entity\Codes\CountryCode;
 class AbstractPayment extends AbstractEntity
 {
 
-	/** @var int */
-	protected $price;
+	protected int $price;
 
 	/** @var string ISO 4217 */
-	protected $curr;
+	protected string $curr;
 
-	/** @var string */
-	protected $label;
+	protected string $label;
 
-	/** @var string */
-	protected $refId;
+	protected string $refId;
 
-	/** @var string */
-	protected $email;
+	protected string $email;
 
-	/** @var string */
-	protected $country = CountryCode::ALL;
+	protected string $country = CountryCode::ALL;
 
-	/** @var string */
-	protected $account;
+	protected string $account;
 
-	/** @var string */
-	protected $name;
+	protected string $name;
 
 	public function getPrice(): int
 	{

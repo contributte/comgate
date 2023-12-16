@@ -8,20 +8,18 @@ use Brick\Money\Money;
 class Refund extends AbstractEntity
 {
 
-	/** @var int */
-	private $amount;
+	private int $amount;
 
 	/** @var string ISO 4217 */
-	private $curr;
+	private string $curr;
 
-	/** @var string */
-	private $transId;
+	private string $transId;
 
-	/** @var string|null */
-	private $refId;
+	private ?string $refId = null;
 
 	final private function __construct()
 	{
+		// Noop
 	}
 
 	public static function of(

@@ -5,14 +5,11 @@ namespace Contributte\Comgate;
 class Comgate
 {
 
-	/** @var string */
-	private $merchant;
+	private string $merchant;
 
-	/** @var string */
-	private $secret;
+	private string $secret;
 
-	/** @var bool */
-	private $test;
+	private bool $test;
 
 	public function __construct(string $merchant, string $secret, bool $test = true)
 	{

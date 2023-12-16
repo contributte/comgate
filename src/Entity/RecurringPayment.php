@@ -9,11 +9,11 @@ use Contributte\Comgate\Entity\Codes\CountryCode;
 class RecurringPayment extends AbstractPayment
 {
 
-	/** @var string */
-	private $initRecurringId;
+	private string $initRecurringId;
 
 	final private function __construct()
 	{
+		// Noop
 	}
 
 	public static function of(

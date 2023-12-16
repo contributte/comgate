@@ -17,8 +17,7 @@ use Contributte\Comgate\Http\HttpClient;
 class PaymentService
 {
 
-	/** @var HttpClient */
-	protected $client;
+	protected HttpClient $client;
 
 	public function __construct(HttpClient $client)
 	{

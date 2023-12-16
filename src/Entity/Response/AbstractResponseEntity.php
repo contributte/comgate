@@ -10,10 +10,7 @@ use Psr\Http\Message\ResponseInterface;
 abstract class AbstractResponseEntity extends Response
 {
 
-	/**
-	 * @param Response|ResponseInterface $origin
-	 */
-	public function __construct($origin)
+	public function __construct(Response|ResponseInterface $origin)
 	{
 		if ($origin instanceof Response) {
 			$origin = $origin->getOrigin();
@@ -22,12 +19,7 @@ abstract class AbstractResponseEntity extends Response
 		parent::__construct($origin);
 	}
 
-	/**
-	 * @param string $fieldId
-	 * @param int|string|null $default
-	 * @return int|string|null
-	 */
-	public function get(string $fieldId, $default = null)
+	public function get(string $fieldId, int|string|null $default = null): int|string|null
 	{
 		$value = $this->getData()[$fieldId] ?? $default;
 		if ($value !== null && !is_string($value) && !is_int($value)) {
@@ -35,6 +27,21 @@ abstract class AbstractResponseEntity extends Response
 		}
 
 		return $value;
+	}
+
+	public function getErrorCode(): int
+	{
+		return $this->getRequiredInteger('code');
+	}
+
+	public function getErrorMessage(): ?string
+	{
+		return $this->getString('message');
+	}
+
+	public function isOk(): bool
+	{
+		return $this->getInteger('code', -1) === 0;
 	}
 
 	/**
@@ -89,21 +96,6 @@ abstract class AbstractResponseEntity extends Response
 		}
 
 		return $value;
-	}
-
-	public function getErrorCode(): int
-	{
-		return $this->getRequiredInteger('code');
-	}
-
-	public function getErrorMessage(): ?string
-	{
-		return $this->getString('message');
-	}
-
-	public function isOk(): bool
-	{
-		return $this->getInteger('code', -1) === 0;
 	}
 
 }
