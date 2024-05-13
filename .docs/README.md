@@ -48,7 +48,8 @@ final class Payments
 			$data['label'] ?? 'Test item',
 			$data['refId'] ?? 'order101',
 			$data['email'] ?? 'dev@contributte.org',
-			PaymentMethodCode::ALL
+			$data['fullName'] ?? 'John Doe',
+			PaymentMethodCode::ALL,
 		);
 
 		$res = $this->paymentService->create($payment);

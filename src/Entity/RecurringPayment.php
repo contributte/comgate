@@ -22,6 +22,7 @@ class RecurringPayment extends AbstractPayment
 		string $label,
 		string $refId,
 		string $email,
+		string $fullName,
 		string $country = CountryCode::ALL,
 	): self
 	{
@@ -32,6 +33,7 @@ class RecurringPayment extends AbstractPayment
 		$p->label = $label;
 		$p->refId = $refId;
 		$p->email = $email;
+		$p->fullName = $fullName;
 		$p->country = $country;
 
 		return $p;
