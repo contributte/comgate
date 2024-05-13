@@ -19,6 +19,8 @@ class AbstractPayment extends AbstractEntity
 
 	protected ?string $email = null;
 
+	protected ?string $fullName = null;
+
 	protected ?string $country = CountryCode::ALL;
 
 	protected ?string $account = null;
@@ -102,6 +104,15 @@ class AbstractPayment extends AbstractEntity
 		return $this->name;
 	}
 
+	public function getFullName(): string
+	{
+		if ($this->fullName === null) {
+			throw new LogicException('FullName is required');
+		}
+
+		return $this->fullName;
+	}
+
 	public function setName(string $name): void
 	{
 		$this->name = $name;
@@ -118,6 +129,7 @@ class AbstractPayment extends AbstractEntity
 			'label' => $this->label,
 			'refId' => $this->refId,
 			'email' => $this->email,
+			'fullName' => $this->fullName,
 			'country' => $this->country,
 			'account' => $this->account,
 			'name' => $this->name,

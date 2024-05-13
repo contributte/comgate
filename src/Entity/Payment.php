@@ -36,6 +36,7 @@ class Payment extends AbstractPayment
 		string $label,
 		string $refId,
 		string $email,
+		string $fullName,
 		string $method = PaymentMethodCode::ALL,
 		string $country = CountryCode::ALL,
 		string $lang = LangCode::CS
@@ -47,6 +48,7 @@ class Payment extends AbstractPayment
 		$p->label = $label;
 		$p->refId = $refId;
 		$p->email = $email;
+		$p->fullName = $fullName;
 		$p->method = $method;
 		$p->country = $country;
 		$p->lang = $lang;

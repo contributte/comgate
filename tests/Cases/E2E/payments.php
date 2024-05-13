@@ -39,6 +39,7 @@ function createPayment(): void
 		'Test item',
 		'test001',
 		'dev@contributte.org',
+		'John Doe',
 		PaymentMethodCode::ALL
 	);
 	$res1 = $payments->create($payment);

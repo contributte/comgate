@@ -41,6 +41,7 @@ Toolkit::test(function (): void {
 		'Test item',
 		'order101',
 		'dev@contributte.org',
+		'John Doe',
 	));
 
 	Assert::type(PaymentResponse::class, $response);
@@ -65,6 +66,7 @@ Toolkit::test(function (): void {
 		'Test item',
 		'order101',
 		'dev@contributte.org',
+		'John Doe',
 	));
 
 	Assert::type(RecurringPaymentResponse::class, $response);
@@ -145,6 +147,7 @@ Toolkit::test(function (): void {
 		'Test item',
 		'order101',
 		'dev@contributte.org',
+		'John Doe',
 	));
 
 	Assert::type(PaymentResponse::class, $response);
