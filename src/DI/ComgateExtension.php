@@ -22,8 +22,8 @@ class ComgateExtension extends CompilerExtension
 	{
 		return Expect::structure([
 			'gateway' => Expect::string()->default('https://payments.comgate.cz/v1.0/'),
-			'merchant' => Expect::string()->required(),
-			'secret' => Expect::string()->required(),
+			'merchant' => Expect::string()->dynamic()->required(),
+			'secret' => Expect::string()->dynamic()->required(),
 			'test' => Expect::bool()->default(true),
 		]);
 	}
