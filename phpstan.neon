@@ -14,5 +14,6 @@ parameters:
 	paths:
 		- src
 		- .docs
+		- tests/Cases
 
 	ignoreErrors:

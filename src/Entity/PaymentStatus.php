@@ -26,8 +26,10 @@ class PaymentStatus extends AbstractEntity
 	}
 
 	/**
-	 * @return mixed[]
-	 */
+	 * @return array{
+	 *     transId: string,
+	 * }
+	 **/
 	public function toArray(): array
 	{
 		return [

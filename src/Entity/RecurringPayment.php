@@ -45,8 +45,20 @@ class RecurringPayment extends AbstractPayment
 	}
 
 	/**
-	 * @return mixed[]
-	 */
+	 * @return array{
+	 *     price: ?int,
+	 *     curr: ?string,
+	 *     label: ?string,
+	 *     refId: ?string,
+	 *     email: ?string,
+	 *     fullName: ?string,
+	 *     country: ?string,
+	 *     account: ?string,
+	 *     name: ?string,
+	 *     prepareOnly: string,
+	 *     initRecurringId: string,
+	 * }
+	 **/
 	public function toArray(): array
 	{
 		return array_merge(parent::toArray(), [

@@ -44,11 +44,10 @@ function createPayment(): void
 	);
 	$res1 = $payments->create($payment);
 	assert($res1->isOk() === true);
-	// var_dump($res->getData());
 
+	assert(array_key_exists('transId', $res1->getData()));
 	$res2 = $payments->status(PaymentStatus::of($res1->getData()['transId']));
 	assert($res2->isOk() === true);
-	// var_dump($res2->getData());
 }
 
 (function (): void {

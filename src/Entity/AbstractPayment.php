@@ -10,7 +10,7 @@ class AbstractPayment extends AbstractEntity
 
 	protected ?int $price = null;
 
-	/** @var string ISO 4217 */
+	/** @see https://cs.wikipedia.org/wiki/ISO_4217 */
 	protected ?string $curr = null;
 
 	protected ?string $label = null;
@@ -119,7 +119,17 @@ class AbstractPayment extends AbstractEntity
 	}
 
 	/**
-	 * @return mixed[]
+	 * @return array{
+	 *     price: ?int,
+	 *     curr: ?string,
+	 *     label: ?string,
+	 *     refId: ?string,
+	 *     email: ?string,
+	 *     fullName: ?string,
+	 *     country: ?string,
+	 *     account: ?string,
+	 *     name: ?string,
+	 * }
 	 */
 	public function toArray(): array
 	{

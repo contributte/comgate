@@ -138,3 +138,37 @@ Toolkit::test(function (): void {
 	$payment->setLang(LangCode::PL);
 	Assert::equal('pl', $payment->toArray()['lang']);
 });
+
+Toolkit::test(function (): void {
+	$payment = Payment::of(
+		Money::of(50, 'CZK'),
+		'Test item',
+		'order101',
+		'dev@contributte.org',
+		'John Doe',
+	);
+	$payment->setChargeUnregulatedCardFees(true);
+	Assert::hasKey('chargeUnregulatedCardFees', $payment->toArray());
+	Assert::equal('true', $payment->toArray()['chargeUnregulatedCardFees']);
+});
+
+Toolkit::test(function (): void {
+	$payment = Payment::of(
+		Money::of(50, 'CZK'),
+		'Test item',
+		'order101',
+		'dev@contributte.org',
+		'John Doe',
+	);
+	$payment->setUrlPaid('https://example.com/paid');
+	$payment->setUrlCancelled('https://example.com/cancelled');
+	$payment->setUrlPending('https://example.com/pending');
+
+	Assert::hasKey('url_paid', $payment->toArray());
+	Assert::hasKey('url_cancelled', $payment->toArray());
+	Assert::hasKey('url_pending', $payment->toArray());
+
+	Assert::equal('https://example.com/paid', $payment->toArray()['url_paid']);
+	Assert::equal('https://example.com/cancelled', $payment->toArray()['url_cancelled']);
+	Assert::equal('https://example.com/pending', $payment->toArray()['url_pending']);
+});

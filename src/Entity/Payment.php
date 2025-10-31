@@ -13,7 +13,7 @@ class Payment extends AbstractPayment
 
 	private string $method = PaymentMethodCode::ALL;
 
-	/** @var string ISO 639-1 */
+	/** @see https://cs.wikipedia.org/wiki/ISO_639-1 */
 	private string $lang = LangCode::CS;
 
 	private bool $prepareOnly = true;
@@ -25,6 +25,14 @@ class Payment extends AbstractPayment
 	private bool $verification = false;
 
 	private bool $embedded = false;
+
+	private bool $chargeUnregulatedCardFees;
+
+	private string $urlPaid;
+
+	private string $urlCancelled;
+
+	private string $urlPending;
 
 	final private function __construct()
 	{
@@ -39,7 +47,7 @@ class Payment extends AbstractPayment
 		string $fullName,
 		string $method = PaymentMethodCode::ALL,
 		string $country = CountryCode::ALL,
-		string $lang = LangCode::CS
+		string $lang = LangCode::CS,
 	): self
 	{
 		$p = new static();
@@ -121,12 +129,73 @@ class Payment extends AbstractPayment
 		$this->embedded = $embedded;
 	}
 
+	public function isChargeUnregulatedCardFees(): bool
+	{
+		return $this->chargeUnregulatedCardFees;
+	}
+
+	public function setChargeUnregulatedCardFees(bool $chargeUnregulatedCardFees): void
+	{
+		$this->chargeUnregulatedCardFees = $chargeUnregulatedCardFees;
+	}
+
+	public function getUrlPaid(): string
+	{
+		return $this->urlPaid;
+	}
+
+	public function setUrlPaid(string $urlPaid): void
+	{
+		$this->urlPaid = $urlPaid;
+	}
+
+	public function getUrlCancelled(): string
+	{
+		return $this->urlCancelled;
+	}
+
+	public function setUrlCancelled(string $urlCancelled): void
+	{
+		$this->urlCancelled = $urlCancelled;
+	}
+
+	public function getUrlPending(): string
+	{
+		return $this->urlPending;
+	}
+
+	public function setUrlPending(string $urlPending): void
+	{
+		$this->urlPending = $urlPending;
+	}
+
 	/**
-	 * @return mixed[]
+	 * @return array{
+	 *     price: ?int,
+	 *     curr: ?string,
+	 *     label: ?string,
+	 *     refId: ?string,
+	 *     email: ?string,
+	 *     fullName: ?string,
+	 *     country: ?string,
+	 *     account: ?string,
+	 *     name: ?string,
+	 *     method: string,
+	 *     lang: string,
+	 *     prepareOnly: string,
+	 *     preauth: string,
+	 *     initRecurring: string,
+	 *     verification: string,
+	 *     embedded: string,
+	 *     chargeUnregulatedCardFees?: string,
+	 *     url_paid?: string,
+	 *     url_cancelled?: string,
+	 *     url_pending?: string,
+	 * }
 	 */
 	public function toArray(): array
 	{
-		return array_merge(parent::toArray(), [
+		$data = [
 			'method' => $this->method,
 			'lang' => $this->lang,
 			'prepareOnly' => $this->prepareOnly ? 'true' : 'false',
@@ -134,7 +203,24 @@ class Payment extends AbstractPayment
 			'initRecurring' => $this->initRecurring ? 'true' : 'false',
 			'verification' => $this->verification ? 'true' : 'false',
 			'embedded' => $this->embedded ? 'true' : 'false',
-		]);
+		];
+		if (isset($this->chargeUnregulatedCardFees)) {
+			$data['chargeUnregulatedCardFees'] = $this->chargeUnregulatedCardFees ? 'true' : 'false';
+		}
+
+		if (isset($this->urlPaid)) {
+			$data['url_paid'] = $this->urlPaid;
+		}
+
+		if (isset($this->urlCancelled)) {
+			$data['url_cancelled'] = $this->urlCancelled;
+		}
+
+		if (isset($this->urlPending)) {
+			$data['url_pending'] = $this->urlPending;
+		}
+
+		return array_merge(parent::toArray(), $data);
 	}
 
 }

@@ -10,7 +10,7 @@ class Refund extends AbstractEntity
 
 	private int $amount;
 
-	/** @var string ISO 4217 */
+	/** @see https://cs.wikipedia.org/wiki/ISO_4217 */
 	private string $curr;
 
 	private string $transId;
@@ -58,7 +58,12 @@ class Refund extends AbstractEntity
 	}
 
 	/**
-	 * @return mixed[]
+	 * @return array{
+	 *     amount: float,
+	 *     curr: string,
+	 *     transId: string,
+	 *     refId: ?string
+	 * }
 	 */
 	public function toArray(): array
 	{

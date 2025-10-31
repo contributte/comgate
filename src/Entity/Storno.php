@@ -28,7 +28,9 @@ class Storno extends AbstractEntity
 	}
 
 	/**
-	 * @return mixed[]
+	 * @return array{
+	 *     transId: string,
+	 * }
 	 */
 	public function toArray(): array
 	{
