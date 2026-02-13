@@ -43,7 +43,7 @@ class Payment extends AbstractPayment
 	): self
 	{
 		$p = new static();
-		$p->price = $money->multipliedBy(100, RoundingMode::UNNECESSARY)->getAmount()->toInt();
+		$p->price = $money->multipliedBy(100, RoundingMode::Unnecessary)->getAmount()->toInt();
 		$p->curr = $money->getCurrency()->getCurrencyCode();
 		$p->label = $label;
 		$p->refId = $refId;

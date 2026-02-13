@@ -29,7 +29,7 @@ class Refund extends AbstractEntity
 	): self
 	{
 		$p = new static();
-		$p->amount = $money->multipliedBy(100, RoundingMode::UNNECESSARY)->getAmount()->toInt();
+		$p->amount = $money->multipliedBy(100, RoundingMode::Unnecessary)->getAmount()->toInt();
 		$p->curr = $money->getCurrency()->getCurrencyCode();
 		$p->transId = $transId;
 		$p->refId = $refId;
