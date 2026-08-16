@@ -43,18 +43,16 @@ extensions:
 	comgate: Contributte\Comgate\DI\ComgateExtension
 ```
 
-## Configuration
+## Quick start
+
+Configure **test-only development credentials** and inject `PaymentService` into an application service:
 
 ```neon
 comgate:
-	merchant: "12345678"
-	secret: foobar
-	test: true/false
+	merchant: 'test-merchant'
+	secret: test-secret
+	test: true
 ```
-
-## Usage
-
-### Create payment
 
 ```php
 use Brick\Money\Money;
@@ -64,51 +62,30 @@ use Contributte\Comgate\Gateway\PaymentService;
 
 final class Payments
 {
-
-	/** @var PaymentService */
-	private $paymentService;
-
-	public function createPayment(array $data): array
+	public function __construct(private PaymentService $payments)
 	{
-		$payment = Payment::of(
-			Money::of($data['price'] ?? 50, $data['currency'] ?? 'CZK'),
-			$data['label'] ?? 'Test item',
-			$data['refId'] ?? 'order101',
-			$data['email'] ?? 'dev@contributte.org',
-			$data['fullName'] ?? 'John Doe',
-			PaymentMethodCode::ALL,
-		);
-
-		$res = $this->paymentService->create($payment);
-
-		// $res->isOk();
-		return $res->getData();
 	}
 
+	public function create(): string
+	{
+		$response = $this->payments->create(Payment::of(
+			Money::of(50, 'CZK'), 'Test item', 'test-001', 'dev@example.test', 'John Doe', PaymentMethodCode::ALL,
+		));
+
+		return $response->getRedirect() ?? '';
+	}
 }
 ```
 
-### Status
+A successful response provides a transaction ID and may provide the payment redirect URL through `getRedirect()`. Use real credentials only outside development; see [the detailed usage reference](.docs/README.md) for status lookups.
 
-```php
-use Contributte\Comgate\Entity\PaymentStatus;
-use Contributte\Comgate\Gateway\PaymentService;
+## Configuration
 
-final class Payments
-{
-
-	/** @var PaymentService */
-	private $paymentService;
-
-	public function getStatus(string $transaction): array
-	{
-		$res = $this->paymentService->status(PaymentStatus::of($transaction));
-
-		// $res->isOk();
-		return $res->getData();
-	}
-
-}
+```neon
+comgate:
+	merchant: "12345678"
+	secret: foobar
+	test: true/false
 ```
 
 ## Development
