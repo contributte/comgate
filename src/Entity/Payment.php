@@ -26,6 +26,14 @@ class Payment extends AbstractPayment
 
 	private bool $embedded = false;
 
+	private ?bool $chargeUnregulatedCardFees = null;
+
+	private ?string $urlPaid = null;
+
+	private ?string $urlCancelled = null;
+
+	private ?string $urlPending = null;
+
 	final private function __construct()
 	{
 		// Noop
@@ -121,12 +129,52 @@ class Payment extends AbstractPayment
 		$this->embedded = $embedded;
 	}
 
+	public function isChargeUnregulatedCardFees(): ?bool
+	{
+		return $this->chargeUnregulatedCardFees;
+	}
+
+	public function setChargeUnregulatedCardFees(?bool $chargeUnregulatedCardFees): void
+	{
+		$this->chargeUnregulatedCardFees = $chargeUnregulatedCardFees;
+	}
+
+	public function getUrlPaid(): ?string
+	{
+		return $this->urlPaid;
+	}
+
+	public function setUrlPaid(?string $urlPaid): void
+	{
+		$this->urlPaid = $urlPaid;
+	}
+
+	public function getUrlCancelled(): ?string
+	{
+		return $this->urlCancelled;
+	}
+
+	public function setUrlCancelled(?string $urlCancelled): void
+	{
+		$this->urlCancelled = $urlCancelled;
+	}
+
+	public function getUrlPending(): ?string
+	{
+		return $this->urlPending;
+	}
+
+	public function setUrlPending(?string $urlPending): void
+	{
+		$this->urlPending = $urlPending;
+	}
+
 	/**
 	 * @return mixed[]
 	 */
 	public function toArray(): array
 	{
-		return array_merge(parent::toArray(), [
+		$data = [
 			'method' => $this->method,
 			'lang' => $this->lang,
 			'prepareOnly' => $this->prepareOnly ? 'true' : 'false',
@@ -134,7 +182,25 @@ class Payment extends AbstractPayment
 			'initRecurring' => $this->initRecurring ? 'true' : 'false',
 			'verification' => $this->verification ? 'true' : 'false',
 			'embedded' => $this->embedded ? 'true' : 'false',
-		]);
+		];
+
+		if ($this->chargeUnregulatedCardFees !== null) {
+			$data['chargeUnregulatedCardFees'] = $this->chargeUnregulatedCardFees ? 'true' : 'false';
+		}
+
+		if ($this->urlPaid !== null) {
+			$data['url_paid'] = $this->urlPaid;
+		}
+
+		if ($this->urlCancelled !== null) {
+			$data['url_cancelled'] = $this->urlCancelled;
+		}
+
+		if ($this->urlPending !== null) {
+			$data['url_pending'] = $this->urlPending;
+		}
+
+		return array_merge(parent::toArray(), $data);
 	}
 
 }
