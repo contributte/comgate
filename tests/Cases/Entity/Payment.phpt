@@ -138,3 +138,56 @@ Toolkit::test(function (): void {
 	$payment->setLang(LangCode::PL);
 	Assert::equal('pl', $payment->toArray()['lang']);
 });
+
+Toolkit::test(function (): void {
+	$payment = Payment::of(
+		Money::of(50, 'CZK'),
+		'Test item',
+		'order101',
+		'dev@contributte.org',
+		'John Doe',
+	);
+	$data = $payment->toArray();
+	Assert::false(array_key_exists('chargeUnregulatedCardFees', $data));
+	Assert::false(array_key_exists('url_paid', $data));
+	Assert::false(array_key_exists('url_cancelled', $data));
+	Assert::false(array_key_exists('url_pending', $data));
+});
+
+Toolkit::test(function (): void {
+	$payment = Payment::of(
+		Money::of(50, 'CZK'),
+		'Test item',
+		'order101',
+		'dev@contributte.org',
+		'John Doe',
+	);
+	$payment->setChargeUnregulatedCardFees(true);
+	Assert::true($payment->isChargeUnregulatedCardFees());
+	Assert::same('true', $payment->toArray()['chargeUnregulatedCardFees']);
+
+	$payment->setChargeUnregulatedCardFees(false);
+	Assert::same('false', $payment->toArray()['chargeUnregulatedCardFees']);
+});
+
+Toolkit::test(function (): void {
+	$payment = Payment::of(
+		Money::of(50, 'CZK'),
+		'Test item',
+		'order101',
+		'dev@contributte.org',
+		'John Doe',
+	);
+	$payment->setUrlPaid('https://example.com/paid');
+	$payment->setUrlCancelled('https://example.com/cancelled');
+	$payment->setUrlPending('https://example.com/pending');
+
+	Assert::same('https://example.com/paid', $payment->getUrlPaid());
+	Assert::same('https://example.com/cancelled', $payment->getUrlCancelled());
+	Assert::same('https://example.com/pending', $payment->getUrlPending());
+
+	$data = $payment->toArray();
+	Assert::same('https://example.com/paid', $data['url_paid']);
+	Assert::same('https://example.com/cancelled', $data['url_cancelled']);
+	Assert::same('https://example.com/pending', $data['url_pending']);
+});
